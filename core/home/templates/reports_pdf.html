@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { color: #2e7d32; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #00695c; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Expense Report</h1>
+    <p>Total Expenses: {{ settings.currency }}{{ total_sum }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Total</th>
+                <th>Budget</th>
+                <th>Difference</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in month_data %}
+            <tr>
+                <td>{{ data.month }}</td>
+                <td>{{ settings.currency }}{{ data.total }}</td>
+                <td>{{ settings.currency }}{{ settings.monthly_budget }}</td>
+                <td>{{ settings.currency }}{{ data.difference }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

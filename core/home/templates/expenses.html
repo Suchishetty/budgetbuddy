@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block start %}
+<div class="header text-center mb-4" style="background: linear-gradient(90deg, #00695c, #2e7d32); color: white; padding: 20px; border-radius: 8px;">
+    <h1>💰 Budget Buddy</h1>
+    <p class="mb-0">Track, manage, and compare your monthly expenses</p>
+</div>
+
+<div class="container">
+    <!-- Expense Form -->
+    <div class="card p-4 mb-4" style="border-left: 5px solid #f9a825;">
+        <h4 class="mb-3 text-success">Enter Your Expenses</h4>
+        <form method="POST" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label class="form-label">Category</label>
+                <select name="category" class="form-select" required>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Amount</label>
+                <input type="number" step="0.01" name="amount" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Date</label>
+                <input type="date" name="date" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Description</label>
+                <input type="text" name="description" class="form-control">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success w-100">➕ Add Expense</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{% url 'pdf' %}" class="btn btn-primary">📊 Total Expenses</a>
+        <a href="{% url 'custom_logout' %}" class="btn btn-danger">🚪 Logout</a>
+    </div>
+
+    <!-- Expense Table -->
+    <div class="card p-3" style="border-left: 5px solid #f9a825;">
+        <h4 class="mb-3 text-success">Expense Records</h4>
+        <table class="table table-striped table-hover">
+            <thead style="background-color:#00695c; color:white;">
+                <tr>
+                    <th>S.No.</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ expense.category }}</td>
+                    <td>{{ settings.currency }}{{ expense.amount }}</td>
+                    <td>{{ expense.date }}</td>
+                    <td>{{ expense.description }}</td>
+                    <td>
+                        <a href="{% url 'update_expense' expense.id %}" class="btn btn-sm btn-success">Update</a>
+                        <a href="{% url 'delete_expense' expense.id %}" class="btn btn-sm btn-danger delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No expenses recorded yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            if (!confirm("Are you sure you want to delete this expense?")) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+{% endblock %}
