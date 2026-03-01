@@ -1,6 +1,7 @@
 💰 BudgetBuddy
 
 BudgetBuddy is a simple yet powerful **personal finance tracker** designed to help users manage monthly expenses, set budgets, and visualize spending patterns. Built with clean modular code and a professional UI, it’s perfect for students, professionals, and anyone looking to take control of their finances.
+---
 
 🚀 Features
 
@@ -10,13 +11,15 @@ BudgetBuddy is a simple yet powerful **personal finance tracker** designed to he
 - 🔍 **Search & Filter** – Quickly find expenses by category, date, or keyword.
 - 🗂️ **Clean Folder Structure** – Organized for scalability and professional presentation.
 - ☁️ **Cloud Ready** – Easily deployable on AWS or other cloud platforms.
+---
 
 🛠️ Tech Stack
 
 - **Frontend:** HTML, CSS, Bootstrap  
 - **Backend:** Node.js / Django (depending on version)  
 - **Database:** MySQL / SQLite  
-- **Version Control:** Git & GitHub  
+- **Version Control:** Git & GitHub
+---
 
 📂 Project Structure
 
@@ -27,6 +30,7 @@ BudgetBuddy/
 │── assets/         # Images, icons, static files
 │── .gitignore      # Clean setup for GitHub upload
 │── README.md       # Project documentation
+---
 
 Code
 ⚙️ Installation & Setup
@@ -50,7 +54,7 @@ Code
    or
     bash
     python manage.py runserver
-
+---
 🌟 Future Enhancements
 🔐 User authentication & login system
 
@@ -59,13 +63,13 @@ Code
 ☁️ AWS deployment with CI/CD pipeline
 
 📤 Export reports in PDF/Excel
-
+---
 🤝 Contributing
 Contributions are welcome! Please fork the repo and submit a pull request with improvements.
-
+---
 📜 License
 This project is licensed under the MIT License – feel free to use and modify.
-
+---
 👩‍💻 Author
 Suchitha – 6th Semester Computer Science Engineering student, VTU
 ---
